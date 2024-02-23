@@ -4,11 +4,15 @@ import "./index.css";
 
 import { NewTask } from "./Components/NewTask";
 
-const tasks = {
-  TaskName: [],
+let dummyTasks = {
+  deploySite: ["get fetches working", "create backend", "create UI"],
+  getFetchesWorking: ["create backend", "createUI"],
+  createUI: [],
+  createBackend: [],
 };
 
 function App() {
+  const [tasks, setTasks] = useState(dummyTasks);
   return (
     <div className="h-screen w-screen bg-red-900">
       <h1 className="bg-orange-700">Welcome to Your</h1>
@@ -17,7 +21,7 @@ function App() {
         <button>Add a New Task</button>
         <button>Onward!</button>
       </div>
-      <NewTask tasks={tasks} />
+      <NewTask />
     </div>
   );
 }
