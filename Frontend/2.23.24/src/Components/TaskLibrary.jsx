@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 let dummyTasks = {
   deploySite: ["get fetches working", "create backend", "create UI"],
@@ -8,20 +9,34 @@ let dummyTasks = {
 };
 
 export function TaskLibrary() {
+  const [changingPrerequisite, setChangingPrerequisite] = useState(false);
   const taskNamesArr = Object.keys(dummyTasks);
+  console.log(taskNamesArr);
   return (
     <>
       <h3>What do I need to do first?</h3>
       <fieldset>
-        <legend className="text-2xl">TDL</legend>
+        <legend className="text-2xl">Your tasks</legend>
         <div>
           {!taskNamesArr && <h2>data pending</h2>}
-          {taskNamesArr.length &&
-            taskNamesArr.map((list) => {
+          {taskNamesArr.length > 0 &&
+            taskNamesArr.map((task, index) => {
               {
-                /* uuidv4 creates a random, unique identifier string */
+                const taskPrereqs = dummyTasks[task];
               }
-              return <List key={uuidv4()} list={list} />;
+              return (
+                <li key={task}>
+                  <h4>{task}</h4>
+                  <input
+                    value={changingPrerequisite}
+                    type="checkbox"
+                    className=""
+                    onChange={() => {
+                      setChangingPrerequisite(!changingPrerequisite);
+                    }}
+                  />
+                </li>
+              );
             })}
         </div>
       </fieldset>
