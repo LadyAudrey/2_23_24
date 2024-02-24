@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+
+import { Prerequisites } from "./Prerequisites";
 
 let dummyTasks = {
   deploySite: ["get fetches working", "create backend", "create UI"],
@@ -11,7 +12,6 @@ let dummyTasks = {
 export function TaskLibrary() {
   const [changingPrerequisite, setChangingPrerequisite] = useState(false);
   const taskNamesArr = Object.keys(dummyTasks);
-  console.log(taskNamesArr);
   return (
     <>
       <h3>What do I need to do first?</h3>
@@ -40,6 +40,7 @@ export function TaskLibrary() {
             })}
         </div>
       </fieldset>
+      <Prerequisites task={"deploySite"} />
     </>
   );
 }
