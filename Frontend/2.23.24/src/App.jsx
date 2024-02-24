@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import "./index.css";
 
 import { NewTask } from "./Components/NewTask";
+import { TaskLibrary } from "./Components/TaskLibrary";
 
 let dummyTasks = {
   deploySite: ["get fetches working", "create backend", "create UI"],
@@ -22,6 +22,7 @@ function App() {
         <button>Onward!</button>
       </div>
       <NewTask />
+      <TaskLibrary />
     </div>
   );
 }

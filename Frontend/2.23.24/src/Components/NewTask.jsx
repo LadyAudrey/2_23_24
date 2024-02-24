@@ -17,7 +17,6 @@ export function NewTask() {
     // console.log("I would send something, but it won't go anywhere");
     // const newTaskName = newTask;
     tasks[newTask] = [];
-    console.log(tasks);
     // await fetch("http://localhost:3001/", {
     //   headers: { "Content-Type": "application/json" },
     //   method: "POST",
