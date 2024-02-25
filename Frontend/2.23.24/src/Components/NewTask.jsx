@@ -1,27 +1,15 @@
 import { useState } from "react";
-
-let tasks = {
-  deploySite: ["get fetches working", "create backend", "create UI"],
-  getFetchesWorking: ["create backend", "createUI"],
-  createUI: [],
-  createBackend: [],
-};
+import { useListsContext } from "../Contexts/TasksContext";
+import { Prerequisites } from "./Prerequisites";
 
 export function NewTask() {
-  //   const tasks = props;
+  const { tasks, setTasks } = useListsContext();
   let [newTask, setNewTask] = useState("");
   const [hasPrerequisite, setHasPrerequisite] = useState(false);
 
-  //   deleted the async to avoid errorsS
-  function handleNewName() {
-    // console.log("I would send something, but it won't go anywhere");
-    // const newTaskName = newTask;
-    tasks[newTask] = [];
-    // await fetch("http://localhost:3001/", {
-    //   headers: { "Content-Type": "application/json" },
-    //   method: "POST",
-    //   body: JSON.stringify(tasks),
-    // });
+  function handleNewTask() {
+    console.error();
+    setTasks(tasks.push(newTask));
   }
   return (
     <>
@@ -33,7 +21,9 @@ export function NewTask() {
           onChange={(event) => {
             setNewTask(event.target.value);
           }}
-          onBlur={handleNewName}
+          // const taskNamesArr = Object.keys(tasks);
+
+          onBlur={handleNewTask}
         />
         <input
           value={hasPrerequisite}
