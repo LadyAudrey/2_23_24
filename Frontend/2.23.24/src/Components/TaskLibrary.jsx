@@ -1,36 +1,52 @@
-import { useContext, useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useListsContext } from "../Contexts/TasksContext";
 
 import { Prerequisites } from "./Prerequisites";
 
 export function TaskLibrary() {
-  const [changingPrerequisite, setChangingPrerequisite] = useState(false);
   const { tasks, setTasks } = useListsContext();
   const taskNamesArr = tasks.map((obj) => Object.keys(obj));
-  console.log(taskNamesArr);
+  const [changingPrerequisite, setChangingPrerequisite] = useState(false);
+
+  useEffect(() => {}, [tasks]);
   return (
     <>
-      <h3>What do I need to do first?</h3>
       <fieldset>
-        <legend className="text-2xl">Your tasks</legend>
+        <legend className="text-2xl text-slate-50">Your tasks</legend>
         <div>
           {taskNamesArr.length > 0 &&
             taskNamesArr.map((task, index) => {
+              let hasPrereq = false;
               {
-                const taskPrereqs = taskNamesArr[index];
+                setChangingPrerequisite(!changingPrerequisite);
+              }
+              {
+                const taskPrereqsKey = taskNamesArr[index];
+
+                if (
+                  Object.values(tasks[index][taskPrereqsKey]).includes(true)
+                ) {
+                  hasPrereq = true;
+                }
               }
               return (
-                <li key={task}>
+                <li key={task} className="m-10 text-slate-50 flex">
                   <h4>{task}</h4>
                   <input
-                    value={changingPrerequisite}
+                    value={hasPrereq}
                     type="checkbox"
-                    className=""
+                    className="mx-5"
                     onChange={() => {
-                      setChangingPrerequisite(!changingPrerequisite);
+                      changingPrerequisite = !changingPrerequisite;
                     }}
                   />
+                  {changingPrerequisite && (
+                    <Prerequisites
+                      changingPrerequisite={changingPrerequisite}
+                      setChangingPrerequisite={setChangingPrerequisite}
+                    />
+                  )}
                 </li>
               );
             })}

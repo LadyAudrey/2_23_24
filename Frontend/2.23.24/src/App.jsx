@@ -16,12 +16,12 @@ function App() {
 
   return (
     <TasksWrapper>
-      <main className="h-screen w-screen bg-red-900">
-        <h1 className="bg-orange-700">Welcome to Your</h1>
-        <h2>Workflow Wizard</h2>
+      <main className="h-screen w-screen overflow-scroll flex flex-col items-center bg-gradient-to-b from-yellow-900 to-orange-950">
+        <h1 className="text-5xl text-slate-50">Welcome to Your</h1>
+        <h2 className="text-3xl text-slate-50">Workflow Wizard</h2>
         <div>
-          <button>Add a New Task</button>
-          <button>Onward!</button>
+          <button className="text-xl text-slate-50">Add a New Task</button>
+          <button className="text-xl text-slate-50">Onward!</button>
         </div>
         <NewTask />
         <TaskLibrary />

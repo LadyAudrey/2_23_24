@@ -8,8 +8,9 @@ export function NewTask() {
   const [hasPrerequisite, setHasPrerequisite] = useState(false);
 
   function handleNewTask() {
-    console.error();
-    setTasks(tasks.push(newTask));
+    const newTaskDict = { [newTask]: {} };
+    setTasks(tasks.push(newTaskDict));
+    console.log(tasks);
   }
   return (
     <>
